@@ -1,9 +1,24 @@
 .meme-editor-page {
     flex-direction: row;
+    gap:2em;
 }
-
 
 canvas {
     background-color: white;
     border: 1px solid black;
+}
+
+.canvas-container {
+    position: relative;
+}
+
+.editor-tools {
+    flex-direction: column;
+    align-items: center;
+    background-color: gray;
+}
+
+.btn-image {
+    width:1em;
+    height:1em;
 }

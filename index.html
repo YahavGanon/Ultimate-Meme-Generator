@@ -8,7 +8,7 @@
     <title>Ultimate Meme Generator</title>
 </head>
 
-<body>
+<body onload="onInit()">
     <div class="main-screen flex">
         <header class="main-header flex">
             <h2>Meme Generator</h2>
@@ -20,10 +20,11 @@
             </div>
         </header>
         <section class="meme-gallery-page flex">
-            <!-- <input type="text" placeholder="Search meme..." oninput="" />
+            <input type="text" placeholder="Search meme..." oninput="" />
+            <input type="file" class="file-input btn" name="image" onchange="onImgInput(event)" accept="image/*" />
             <section class="mems">
-                <img src="img/1.jpg" alt="meme" id="1">
-                <img src="img/2.jpg" alt="meme" id="2">
+                <!-- <img src="img/1.jpg" alt="meme" id="1"> -->
+                <!-- <img src="img/2.jpg" alt="meme" id="2">
                 <img src="img/3.jpg" alt="meme" id="3">
                 <img src="img/4.jpg" alt="meme" id="4">
                 <img src="img/5.jpg" alt="meme" id="5">
@@ -43,13 +44,25 @@
             </section>
         </section>
         <section class="meme-editor-page flex">
-            <canvas width="450" height="450"></canvas>
-            <section class="editor-tools"></section>
+            <div class="canvas-container">
+                <canvas id="my-canvas" width="400" height="400"></canvas>
+            </div>
+            <section class="editor-tools flex">
+                <input type="text" data-trans="add-text-here" class="meme-text-input" name="text-input" placeholder="Add Text Here" oninput="onAddTxt(this)" fdprocessedid="lfg0r3">
+                <div class="btn-actions flex">
+                    <button class="btn"><img src="img/updown.png" class="btn-image"></button>
+                    <button class="btn"><img src="img/add.png" class="btn-image"></button>
+                    <button class="btn"><img src="img/trash.png" class="btn-image"></button>
+                </div>
+            </section>
         </section>
     </div>
 
 
     <script src="js/main.js"></script>
+    <script src="js/memeservice.js"></script>
+    <script src="js/memecontroller.js"></script>
+    <script src="js/upload-from-local.js"></script>
 </body>
 
 </html>

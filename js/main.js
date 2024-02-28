@@ -1,5 +1,6 @@
 'use strict'
-
+let gElCanvas
+let gCtx
 var gImgs = [
     {id: 1, url: 'img/1.jpg', keywords: ['funny', 'president', 'fat']},
     {id: 2, url: 'img/2.jpg', keywords: ['animal', 'dogs', 'love']},
@@ -20,3 +21,11 @@ var gImgs = [
     {id: 17, url: 'img/17.jpg', keywords: ['person', 'president', 'funny']},
     {id: 18, url: 'img/18.jpg', keywords: ['person', 'toy', 'funny']},
 ]
+
+function onInit() {
+    gElCanvas = document.querySelector('canvas')
+    gCtx = gElCanvas.getContext('2d')
+}
+
+
+
