@@ -1,0 +1,11 @@
+.main-header {
+    position: relative;
+    background-color: gray;
+    place-content: center;
+}
+
+.nav-list {
+    padding: 1.2em;
+    background-color: whitesmoke;
+    gap: 1em;
+}

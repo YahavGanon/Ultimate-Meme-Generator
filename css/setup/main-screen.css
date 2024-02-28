@@ -1,0 +1,9 @@
+* {
+    box-sizing: border-box;
+}
+
+.main-screen{
+    flex-direction: column;
+    place-items: center;
+    gap: 1em;
+}
