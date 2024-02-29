@@ -48,10 +48,11 @@
                 <canvas id="my-canvas" width="400" height="400"></canvas>
             </div>
             <section class="editor-tools flex">
-                <input type="text" data-trans="add-text-here" class="meme-text-input" name="text-input" placeholder="Add Text Here" oninput="onAddTxt(this)" fdprocessedid="lfg0r3">
+                <input type="text" data-trans="add-text-here" class="meme-text-input" name="text-input"
+                    placeholder="Add Text Here" oninput="onAddTxt(this)" fdprocessedid="lfg0r3">
                 <div class="btn-actions flex">
-                    <button class="btn"><img src="img/updown.png" class="btn-image"></button>
-                    <button class="btn"><img src="img/add.png" class="btn-image"></button>
+                    <button class="btn" onclick="selectedMeme(this)"><img src="img/updown.png" class="btn-image"></button>
+                    <button class="btn" onClick="createMemeElemnt(220, 80)"><img src="img/add.png" class="btn-image"></button>
                     <button class="btn"><img src="img/trash.png" class="btn-image"></button>
                 </div>
             </section>

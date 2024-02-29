@@ -27,16 +27,25 @@ function drawText(text, x, y) {
 
 function onAddTxt(txt) {
     // const elTxtInput = document.querySelector('[name="text-input"]')
-    const selectedLine = gMeme.lines[gMeme.selectedLineIdx]
+    // let selectedLine = gMeme.lines[gMeme.selectedLineIdx]
+    // console.log('select', selectedLine)
+    if (gMeme.lines.length === 1) {
+        gMeme.selectedLineIdx = 1
+    }
     const selectPargraph = document.getElementById(`line-${gMeme.selectedLineIdx}`)
-    selectPargraph.innerText = txt.value
-    selectedLine.txt = txt.value
+    console.log('select', selectPargraph)
+    if (selectPargraph === null) {
+
+        // selectedLine = gMeme.lines[gMeme.selectedLineIdx = 1]
+    }
+    selectPargraph.textContent = txt.value
+    // selectedLine.txt = txt.value
     return txt.value
 }
 
 function createMemeElemnt(x, y) {
     const pargraph = document.createElement('p')
-    pargraph.style.color = 'black'
+    pargraph.style.color = 'white'
     pargraph.style.position = 'absolute'
     pargraph.style.left = `${x}px`
     pargraph.style.top = `${y}px`
@@ -45,7 +54,7 @@ function createMemeElemnt(x, y) {
     pargraph.style.padding = '0'
     pargraph.onclick = () => (selectedMeme(pargraph))
     pargraph.id = `line-${gMeme.lines.length + 1}`
-    console.log(gMeme.lines.length++)
+    // console.log(gMeme.lines.length)
     gMeme.lines.push({
         txt: pargraph.textContent,
         color: pargraph.style.color,
@@ -54,11 +63,22 @@ function createMemeElemnt(x, y) {
     elCanvasContainer.appendChild(pargraph)
 }
 
-function selectedMeme(el) {
-    const pargraphIdx = gMeme.lines.findIndex(line => {
-        if (line) {
-            return el.textContent === line.txt
-        }
-    })
-    gMeme.selectedLineIdx = pargraphIdx 
+function selectedMeme(value) {
+    // const pargraphIdx = gMeme.lines.findIndex(line => {
+    //     if (line) {
+    //         return el.textContent === line.txt
+    //     }
+    // })
+
+    // console.log('pr:', gMeme.selectedLineIdx)
+    // gMeme.selectedLineIdx = pargraphIdx
+    // console.log(gMeme.selectedLineIdx)
+    // value.id = document.getElementById(`line-${gMeme.selectedLineIdx}`)
+    // value.style.color = 'black'
+    gMeme.selectedLineIdx = value.id
+    console.log('this:', value.id)
+    value.style.borderStyle = "solid"
+    value.style.borderWidth = "1px"
+    value.style.borderColor = "black"
+    // const selectPargraph = document.getElementById(`line-${gMeme.selectedLineIdx}`)
 }
