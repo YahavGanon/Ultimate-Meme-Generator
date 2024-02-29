@@ -1,5 +1,5 @@
 'use strict'
-
+var saveImg
 function onImgInput(ev) {
     loadImageFromInput(ev, renderImg)
     const elEditorSection = document.querySelector ('.meme-editor-page')
@@ -21,13 +21,14 @@ function loadImageFromInput(ev, onImageReady) {
 }
 
 function renderImg(img) {
+    saveImg = img
+    console.log('the image:', saveImg)
     // Adjust the canvas to the new image size
     gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
 
     // Draw the img on the canvas
     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
-    drawText('your text here',200,50)
-    // createMemeElemnt(200,50)
+    drawText('your text here',200,50 ,gMeme.lines.length)
     gMeme.selectedLineIdx = 0
 }
 
