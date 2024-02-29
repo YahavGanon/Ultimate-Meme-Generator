@@ -2,6 +2,11 @@
 
 function onImgInput(ev) {
     loadImageFromInput(ev, renderImg)
+    const elEditorSection = document.querySelector ('.meme-editor-page')
+    elEditorSection.classList.remove("hide")
+
+    const myElement = document.getElementById('myElement');
+    myElement.style.display = 'none'
 }
 
 function loadImageFromInput(ev, onImageReady) {
@@ -21,7 +26,8 @@ function renderImg(img) {
 
     // Draw the img on the canvas
     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
-    createMemeElemnt(200,50)
+    drawText('your text here',200,50)
+    // createMemeElemnt(200,50)
     gMeme.selectedLineIdx = 0
 }
 

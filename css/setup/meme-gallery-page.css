@@ -2,3 +2,18 @@
     flex-direction: column;
     justify-content: center;
 }
+
+.main-gallery {
+    display: flex;
+    flex-direction: column;
+}
+
+.mems {
+    overflow-y: auto;
+    height: 80vh;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    align-items: center;
+    padding-inline: 50px;
+}
