@@ -21,6 +21,7 @@ function loadImageFromInput(ev, onImageReady) {
 }
 
 function renderImg(img) {
+    // console.log(img)
     saveImg = img
     // Adjust the canvas to the new image size
     gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width

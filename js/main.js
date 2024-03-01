@@ -135,6 +135,30 @@ function onToggleMenu(){
     document.body.classList.toggle('menu-open')
 }
 
+ function onRandomize() {
+    console.log('its clicked')
+    const elImg = document.getElementById(`${getRandomIntInclusive(1, 18)}`)
+    renderCanvasImg(elImg)
+ }
+
+// function onLeftSide(){
+//     const selectedLine = gMeme.lines[gMeme.selectedLineIdx]
+//     selectedLine.textAlign = 'right'
+//     renderOnCanvas()
+// }
+
+// function onCenter(){
+//     const selectedLine = gMeme.lines[gMeme.selectedLineIdx]
+//     selectedLine.textAlign = 'center'
+//     renderOnCanvas()
+// }
+
+// function onRightSide(){
+//     const selectedLine = gMeme.lines[gMeme.selectedLineIdx]
+//     selectedLine.textAlign = 'left'
+//     renderOnCanvas()
+// }
+
 // function addListeners() {
 //     addMouseListeners()
 //     addTouchListeners()

@@ -22,6 +22,7 @@ function drawText(text, x, y, id) {
         size: gCtx.font,
         x: x,
         y: y,
+        align: gCtx.textAlign,
         isDrage : false,
     })
     gCtx.fillText(text, x, y)
@@ -46,6 +47,12 @@ function removeLine(idx) {
     const lineIdx = gMeme.lines.findIndex((line) => line.id === idx)
     gMeme.lines.splice(lineIdx, 1)
 }
+
+function getRandomIntInclusive(min, max) {
+    const minCeiled = Math.ceil(min);
+    const maxFloored = Math.floor(max);
+    return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled); 
+  }
 
 
 
