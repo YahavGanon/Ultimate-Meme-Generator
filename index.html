@@ -13,7 +13,7 @@
         <header class="main-header flex">
             <h2>Meme Generator</h2>
             <div class="nav-list flex">
-                <a href="#">Gallery</a>
+                <a href="#" onclick="window.location.reload()">Gallery</a>
                 <a href="#">Saved</a>
                 <a href="#">Randomize</a>
                 <a href="#">About</a>
@@ -21,7 +21,8 @@
         </header>
         <section class="meme-gallery-page flex">
             <main class="main-gallery" id="myElement">
-                <input type="text" placeholder="Search meme..." oninput="" />
+                <input type="text" placeholder="Search meme...                                                            
+                                 🔍" oninput="onFilterByName()" />
                 <section class="mems">
                     <input type="file" class="file-input btn" name="image" onchange="onImgInput(event)"
                         accept="image/*" />
@@ -78,7 +79,8 @@
                         <option value="brush script mt">BRUSH SCRIPT MT</option>
                         <option value="poppins">POPPINS</option>
                     </select>
-                    <input type="color" id="color" name="colorTxt" form="frmRegister" value="#FFFFFF" id="color"
+                    <!-- <label for="color"><img src="img/paint-board-and-brush.png" class="btn-image"></label> -->
+                    <input class="color-pick" type="color" id="color" name="colorTxt" form="frmRegister" value="#FFFFFF" id="color"
                         onchange="setColors()"/>
 
                 </div>

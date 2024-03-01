@@ -101,11 +101,35 @@ function setColors() {
     renderOnCanvas()
 }
 
+function onFilterByName() {
+    const searchInput = document.querySelector('input[type="text"]').value.toLowerCase()
+    
+    gImgs.forEach(img => {
+        const elImg = document.getElementById(`${img.id}`)
+        let shouldDisplay = false
 
-// function downloadImg(elLink) {
-//     const imgContent = gElCanvas.toDataURL('image/jpeg')
-//     elLink.href = imgContent
-// }
+        if (searchInput === "") {
+            shouldDisplay = true 
+        } else {
+            img.keywords.forEach(word => {
+                if (word.toLowerCase().includes(searchInput)) {
+                    shouldDisplay = true
+                }
+            });
+        }
+
+        if (shouldDisplay) {
+            elImg.style.display = 'block'
+        } else {
+            elImg.style.display = 'none'
+        }
+    })
+}
+
+function downloadImg(elLink) {
+    const imgContent = gElCanvas.toDataURL('image/jpeg')
+    elLink.href = imgContent
+}
 
 // function addListeners() {
 //     addMouseListeners()

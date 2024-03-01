@@ -40,10 +40,6 @@ function handleClick(event, text, x, y, id) {
 
 function selectedMeme(value) {
     gMeme.selectedLineIdx = value
-    console.log('this:', value)
-    // value.style.borderStyle = "solid"
-    // value.style.borderWidth = "1px"
-    // value.style.borderColor = "black"
 }
 
 function removeLine(idx) {
