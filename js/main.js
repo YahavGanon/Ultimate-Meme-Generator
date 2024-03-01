@@ -131,6 +131,10 @@ function downloadImg(elLink) {
     elLink.href = imgContent
 }
 
+function onToggleMenu(){
+    document.body.classList.toggle('menu-open')
+}
+
 // function addListeners() {
 //     addMouseListeners()
 //     addTouchListeners()

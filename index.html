@@ -9,15 +9,17 @@
 </head>
 
 <body onload="onInit()">
+    <div class="scren-shadow" onclick="onToggleMenu()"></div>
     <div class="main-screen flex">
         <header class="main-header flex">
             <h2>Meme Generator</h2>
-            <div class="nav-list flex">
+            <nav class="nav-list flex">
                 <a href="#" onclick="window.location.reload()">Gallery</a>
                 <a href="#">Saved</a>
                 <a href="#">Randomize</a>
                 <a href="#">About</a>
-            </div>
+            </nav>
+            <button class="hamburger" onclick="onToggleMenu()">☰</button>
         </header>
         <section class="meme-gallery-page flex">
             <main class="main-gallery" id="myElement">

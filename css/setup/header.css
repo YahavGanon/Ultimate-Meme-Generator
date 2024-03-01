@@ -9,3 +9,10 @@
     background-color: whitesmoke;
     gap: 1em;
 }
+
+a {
+    text-decoration: none;
+    border-bottom: none;
+    color:black;
+}
+

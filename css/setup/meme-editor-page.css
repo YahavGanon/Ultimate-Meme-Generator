@@ -1,5 +1,5 @@
 .meme-editor-page {
-    flex-direction: row;
+    flex-direction: column;
     gap:2em;
 }
 
