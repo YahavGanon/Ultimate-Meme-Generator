@@ -2,6 +2,7 @@
 let gElCanvas
 let gCtx
 let gStartPos
+var font = 'Arial'
 const TOUCH_EVENTS = ['touchstart', 'touchmove', 'touchend']
 var gImgs = [
     { id: 1, url: 'img/1.jpg', keywords: ['funny', 'president', 'fat'] },
@@ -29,6 +30,77 @@ function onInit() {
     gCtx = gElCanvas.getContext('2d')
     // addListeners()
 }
+
+function renderCanvasImg(img) {
+    renderImg(img)
+    const elEditorSection = document.querySelector('.meme-editor-page')
+    elEditorSection.classList.remove("hide")
+
+    const myElement = document.getElementById('myElement')
+    myElement.style.display = 'none'
+}
+
+function renderOnCanvas(){
+        gCtx.drawImage(saveImg, 0, 0, gElCanvas.width, gElCanvas.height)
+        gMeme.lines.forEach(line => {
+            gCtx.lineWidth = 2
+            gCtx.strokeStyle = 'black'
+            gCtx.fillStyle = line.color
+            gCtx.font = line.size
+            gCtx.textAlign = 'center'
+            gCtx.textBaseline = 'middle'
+            gCtx.onclick = () => (selectedMeme(gCtx))
+            gCtx.fillText(line.txt, line.x, line.y)
+            gCtx.strokeText(line.txt, line.x, line.y)
+            gElCanvas.addEventListener('click', function (event) {
+                handleClick(event, line.text, line.x, line.y, line.id);
+            })
+        })
+}
+
+function onChangeLine(value) {
+    gMeme.selectedLineIdx = value + 1
+    if (gMeme.selectedLineIdx >= gMeme.lines.length){
+        gMeme.selectedLineIdx = 0
+    }
+}
+
+function onAddTxt(txt) {
+    const selectedLine = gMeme.lines[gMeme.selectedLineIdx]
+    selectedLine.txt = txt.value
+    gElCanvas.height = (saveImg.naturalHeight / saveImg.naturalWidth) * gElCanvas.width
+    renderOnCanvas()
+}
+
+function onRemoveline(lineCut) {
+    removeLine(lineCut)
+    renderOnCanvas()
+    gMeme.selectedLineIdx = gMeme.lines.length - 1
+}
+
+function onFontSize(value) {
+    const selectedLine = gMeme.lines[gMeme.selectedLineIdx]
+    const currentFontSize = parseInt(selectedLine.size)
+    const newFontSize = currentFontSize + value
+    selectedLine.size = newFontSize + 'px' + ' ' + font
+    renderOnCanvas()
+}
+
+function onSetFont(value) {
+    font = value.value
+    const selectedLine = gMeme.lines[gMeme.selectedLineIdx]
+    const currentFontSize = parseInt(selectedLine.size)
+    selectedLine.size = currentFontSize + 'px' + ' ' + value.value
+    renderOnCanvas()   
+}
+
+function setColors() {
+    const elColor = document.querySelector('[name="colorTxt"]')
+    const selectedLine = gMeme.lines[gMeme.selectedLineIdx]
+    selectedLine.color = elColor.value
+    renderOnCanvas()
+}
+
 
 // function downloadImg(elLink) {
 //     const imgContent = gElCanvas.toDataURL('image/jpeg')
@@ -71,6 +143,5 @@ function onInit() {
 // 	}
 // 	return pos
 // }
-
 
 
