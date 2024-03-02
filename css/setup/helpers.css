@@ -26,6 +26,7 @@
 }
 
 .search-input {
+    font-family: cursive;
     background-color: #ebeef3;
     border-radius: 1.75rem;
     border: none;

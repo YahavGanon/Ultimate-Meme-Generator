@@ -1,0 +1,53 @@
+body{
+    font-size: 2em;
+    text-align: center;
+}
+h1{
+    background-color:paleturquoise;
+    color:white;
+    padding: 1.2em;
+}
+a{
+    background-color:white;
+    padding: 1em;
+}
+.orange{
+    color: paleturquoise
+    
+}
+.learn-link { 
+    color: orange;
+}
+
+.title{
+    text-align:center;
+    font-size: 45px;
+    
+}
+img{
+    height: 300px;
+    margin: 17px;
+    border: 5px paleturquoise solid;  
+}
+.gallery-container{
+    background-color: bisque;
+    border: 3px paleturquoise solid;  
+}
+
+.buttonQ {
+    background-color:lightblue;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+button:hover{
+    background-color: lightskyblue;
+}
+p span{
+    color:blueviolet;
+    font-size: 30px;
+} 
+.special{
+    font-size: 40px;
+    color:rgb(128, 180, 225)
+}

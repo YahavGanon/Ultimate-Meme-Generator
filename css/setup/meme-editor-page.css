@@ -6,6 +6,7 @@
 canvas {
     background-color: white;
     border: 1px solid black;
+    position: relative;
 }
 
 .canvas-container {
@@ -29,7 +30,12 @@ canvas {
     height: 5em
 }
 
+select{
+    font-family: cursive;
+}
+
 select option{
     background-color: var(--mix-blue-green);
     color:black;
+    font-family: cursive;
 }

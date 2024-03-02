@@ -15,5 +15,12 @@ a {
     text-decoration: none;
     border-bottom: none;
     color:black;
+    font-family: cursive;
+
+}
+
+h2{
+    color: white;
+    font-family: cursive;
 }
 

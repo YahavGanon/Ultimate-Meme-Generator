@@ -9,16 +9,15 @@
 </head>
 
 <body onload="onInit()">
-    <div class="scren-shadow" onclick="onToggleMenu()"></div>
     <div class="main-screen flex">
         <header class="main-header flex">
             <h2>Meme Generator</h2>
             <nav class="nav-list flex">
                 <a href="#" onclick="window.location.reload()">Gallery</a>
                 <a href="#">Saved</a>
-                <a href="#" onclick="onRandomize()">Randomize</a>
-                <a href="#" onclick="onRandomize2()">Randomize 2.0</a>
-                <a href="#">About</a>
+                <a href="#" onclick="onRandomize(), onToggleMenu()">Randomize</a>
+                <a href="#" onclick="onRandomize2(), onToggleMenu()">Randomize 2.0</a>
+                <a href="about.html">About</a>
             </nav>
             <button class="hamburger" onclick="onToggleMenu()">☰</button>
         </header>

@@ -41,4 +41,8 @@
 .hamburger {
     display: none;
 }
+
+.nav-list a{
+    color: whitesmoke;
+}
 }
