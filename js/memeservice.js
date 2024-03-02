@@ -14,16 +14,16 @@ function drawText(text, x, y, id) {
     gCtx.font = '45px Arial'
     gCtx.textAlign = 'center'
     gCtx.textBaseline = 'middle'
-    gCtx.onclick = () => (selectedMeme(gCtx))
     gMeme.lines.push({
         id: gMeme.lines.length,
         txt: text,
         color: gCtx.fillStyle,
+        strokeColor: gCtx.strokeStyle,
         size: gCtx.font,
         x: x,
         y: y,
         align: gCtx.textAlign,
-        isDrage : false,
+        isDrage: false,
     })
     gCtx.fillText(text, x, y)
     gCtx.strokeText(text, x, y)
@@ -39,8 +39,8 @@ function handleClick(event, text, x, y, id) {
     }
 }
 
-function selectedMeme(value) {
-    gMeme.selectedLineIdx = value
+function selectedMeme(id) {
+    gMeme.selectedLineIdx = id
 }
 
 function removeLine(idx) {
@@ -51,8 +51,8 @@ function removeLine(idx) {
 function getRandomIntInclusive(min, max) {
     const minCeiled = Math.ceil(min);
     const maxFloored = Math.floor(max);
-    return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled); 
-  }
+    return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled);
+}
 
 
 

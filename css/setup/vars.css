@@ -1,0 +1,8 @@
+:root{
+    /* color */
+   --mix-blue-green:linear-gradient(135deg, #0F9BB3 50%, #30BB73);
+   
+   /* size */
+    --em-1: 1em;
+}
+

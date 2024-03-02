@@ -1,6 +1,7 @@
 .meme-gallery-page {
     flex-direction: column;
     justify-content: center;
+    background-color: #383B42;
 }
 
 .main-gallery {
@@ -16,4 +17,5 @@
     gap: 20px;
     align-items: center;
     padding-inline: 50px;
+    scrollbar-color: var(--mix-blue-green);
 }

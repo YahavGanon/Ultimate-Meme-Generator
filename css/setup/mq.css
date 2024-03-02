@@ -1,10 +1,10 @@
-@media (max-width : 640px){
+@media (max-width : 920px){
     .nav-list{
         position:fixed;
         top:0;
         right:0;
         height: 100dvh;
-        background-color: rgb(255 255 255 / 90%);
+        background: var(--mix-blue-green);
         border-inline-start: 1px solid #ccc;
         box-shadow: -4px 0px 20px rgb(0 0 0 /30%);
         flex-direction: column;
@@ -32,7 +32,7 @@
 }
 
 
-@media (min-width : 640px){
+@media (min-width : 920px){
 
 .meme-editor-page{
     flex-direction: row;

@@ -44,12 +44,11 @@ function renderOnCanvas(){
         gCtx.drawImage(saveImg, 0, 0, gElCanvas.width, gElCanvas.height)
         gMeme.lines.forEach(line => {
             gCtx.lineWidth = 2
-            gCtx.strokeStyle = 'black'
+            gCtx.strokeStyle = line.strokeColor
             gCtx.fillStyle = line.color
             gCtx.font = line.size
-            gCtx.textAlign = 'center'
+            gCtx.textAlign = line.align
             gCtx.textBaseline = 'middle'
-            gCtx.onclick = () => (selectedMeme(gCtx))
             gCtx.fillText(line.txt, line.x, line.y)
             gCtx.strokeText(line.txt, line.x, line.y)
             gElCanvas.addEventListener('click', function (event) {
@@ -94,10 +93,17 @@ function onSetFont(value) {
     renderOnCanvas()   
 }
 
-function setColors() {
+function setFillColor() {
     const elColor = document.querySelector('[name="colorTxt"]')
     const selectedLine = gMeme.lines[gMeme.selectedLineIdx]
     selectedLine.color = elColor.value
+    renderOnCanvas()
+}
+
+function setStrokeStyle() {
+    const elColor = document.querySelector('[name="colorBorderTxt"]')
+    const selectedLine = gMeme.lines[gMeme.selectedLineIdx]
+    selectedLine.strokeColor = elColor.value
     renderOnCanvas()
 }
 
@@ -136,28 +142,43 @@ function onToggleMenu(){
 }
 
  function onRandomize() {
-    console.log('its clicked')
     const elImg = document.getElementById(`${getRandomIntInclusive(1, 18)}`)
     renderCanvasImg(elImg)
  }
 
-// function onLeftSide(){
-//     const selectedLine = gMeme.lines[gMeme.selectedLineIdx]
-//     selectedLine.textAlign = 'right'
-//     renderOnCanvas()
-// }
+ function onRandomize2(){
+    const elImg = document.getElementById(`${getRandomIntInclusive(19, 23)}`)
+    saveImg = elImg
 
-// function onCenter(){
-//     const selectedLine = gMeme.lines[gMeme.selectedLineIdx]
-//     selectedLine.textAlign = 'center'
-//     renderOnCanvas()
-// }
+    gElCanvas.height = (elImg.naturalHeight / elImg.naturalWidth) * gElCanvas.width
+    gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
+    drawText('',200,50 ,gMeme.lines.length)
+    gMeme.selectedLineIdx = 0
 
-// function onRightSide(){
-//     const selectedLine = gMeme.lines[gMeme.selectedLineIdx]
-//     selectedLine.textAlign = 'left'
-//     renderOnCanvas()
-// }
+    const elEditorSection = document.querySelector('.meme-editor-page')
+    elEditorSection.classList.remove("hide")
+
+    const myElement = document.getElementById('myElement')
+    myElement.style.display = 'none'
+ }
+
+function onLeftSide(){
+    const selectedLine = gMeme.lines[gMeme.selectedLineIdx]
+    selectedLine.align = 'right'
+    renderOnCanvas()
+}
+
+function onCenter(){
+    const selectedLine = gMeme.lines[gMeme.selectedLineIdx]
+    selectedLine.align = 'center'
+    renderOnCanvas()
+}
+
+function onRightSide(){
+    const selectedLine = gMeme.lines[gMeme.selectedLineIdx]
+    selectedLine.align = 'left'
+    renderOnCanvas()
+}
 
 // function addListeners() {
 //     addMouseListeners()

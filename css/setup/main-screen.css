@@ -1,20 +1,11 @@
-/* * {
-    box-sizing: border-box;
-} */
-
+body{
+    background-color: #22252C;
+}
 .main-screen{
     width:100%;
     flex-direction: column;
     place-items: center;
-    gap: 1em;
+    gap: var(--em-1);
 }
 
-.screen-shadow{
-    /* height: 100%;
-    width: 100%; */
-    position: fixed;
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    cursor: pointer;
-}
 

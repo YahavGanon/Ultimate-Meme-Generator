@@ -1,6 +1,6 @@
 .meme-editor-page {
     flex-direction: column;
-    gap:2em;
+    gap: 2em;
 }
 
 canvas {
@@ -15,14 +15,21 @@ canvas {
 .editor-tools {
     flex-direction: column;
     align-items: center;
-    background-color: gray;
+    justify-content: space-evenly;
+    background-color: #383B42;
+    border-radius: 0.5rem
 }
 
 .btn-image {
-    width:1em;
-    height:1em;
+    width: var(--em-1);
+    height: var(--em-1);
 }
 
-.color-pick{
-    height:5em
+.color-pick {
+    height: 5em
+}
+
+select option{
+    background-color: var(--mix-blue-green);
+    color:black;
 }
