@@ -2,7 +2,6 @@
 var elCanvasContainer = document.querySelector(".canvas-container")
 
 var gMeme = {
-    // selectedImgId: 5,
     selectedLineIdx: 0,
     lines: []
 }

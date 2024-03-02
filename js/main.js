@@ -2,6 +2,7 @@
 let gElCanvas
 let gCtx
 let gStartPos
+let gSavedMemes = []
 var font = 'Arial'
 const TOUCH_EVENTS = ['touchstart', 'touchmove', 'touchend']
 var gImgs = [
@@ -28,7 +29,7 @@ var gImgs = [
 function onInit() {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
-    // addListeners()
+    addListeners()
 }
 
 function renderCanvasImg(img) {
@@ -180,41 +181,47 @@ function onRightSide(){
     renderOnCanvas()
 }
 
-// function addListeners() {
-//     addMouseListeners()
-//     addTouchListeners()
-// }
+function onSave(){
+    gSavedMemes = baseImg
+    saveToStorage(DB_IMG_STR, gSavedMemes)
+    saveToStorage('DB_meme', gMeme)
+}
 
-// function addMouseListeners() {
-//     gElCanvas.addEventListener('mousedown', onDown)
-//     gElCanvas.addEventListener('mousemove', onMove)
-//     gElCanvas.addEventListener('mouseup', onUp)
-// }
+function onSavedInit(){
+    let gImg = loadFromStorage(DB_IMG_STR)
+    let meme = loadFromStorage('DB_meme')
+    gMeme = meme
+    if (typeof gImg === 'string' && gImg.startsWith('data:image/png;base64,')) {
+        saveImg = new Image()
+        saveImg.src = gImg
+        saveImg.onload = function() {
+            gElCanvas.height = (saveImg.naturalHeight / saveImg.naturalWidth) * gElCanvas.width
+            renderOnCanvas()
+        }
+    }
+    const elEditorSection = document.querySelector('.meme-editor-page')
+    elEditorSection.classList.remove("hide")
 
-// function addTouchListeners() {
-//     gElCanvas.addEventListener('touchstart', onDown)
-//     gElCanvas.addEventListener('touchmove', onMove)
-//     gElCanvas.addEventListener('touchend', onUp)
-// }
+    const myElement = document.getElementById('myElement')
+    myElement.style.display = 'none'
+}
 
-// function getEvPos(ev) {
-// 	let pos = {
-// 		x: ev.offsetX,
-// 		y: ev.offsetY,
-// 	}
+function addListeners() {
+    addMouseListeners()
+    addTouchListeners()
+}
 
-// 	if (TOUCH_EVENTS.includes(ev.type)) {
-		
-// 		ev.preventDefault()         // Prevent triggering the mouse events
-// 		ev = ev.changedTouches[0]   // Gets the first touch point
+function addMouseListeners() {
+    gElCanvas.addEventListener('mousedown', onDown)
+    gElCanvas.addEventListener('mousemove', onMove)
+    gElCanvas.addEventListener('mouseup', onUp)
+}
 
-// 		// Calc pos according to the touch screen
-// 		pos = {
-// 			x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
-// 			y: ev.pageY - ev.target.offsetTop - ev.target.clientTop,
-// 		}
-// 	}
-// 	return pos
-// }
+function addTouchListeners() {
+    gElCanvas.addEventListener('touchstart', onDown)
+    gElCanvas.addEventListener('touchmove', onMove)
+    gElCanvas.addEventListener('touchend', onUp)
+}
+
 
 

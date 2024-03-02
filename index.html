@@ -14,7 +14,7 @@
             <h2>Meme Generator</h2>
             <nav class="nav-list flex">
                 <a href="#" onclick="window.location.reload()">Gallery</a>
-                <a href="#">Saved</a>
+                <a href="#" onclick="onSavedInit()">Saved</a>
                 <a href="#" onclick="onRandomize(), onToggleMenu()">Randomize</a>
                 <a href="#" onclick="onRandomize2(), onToggleMenu()">Randomize 2.0</a>
                 <a href="about.html">About</a>
@@ -93,14 +93,15 @@
                     </select>
                     <input class="color-pick" type="color" id="color" name="colorTxt" form="frmRegister" value="#FFFFFF"
                         id="color" onchange="setFillColor()" />
-                    <input class="color-pick" type="color" id="color" name="colorBorderTxt" form="frmRegister" value="#000000"
-                        id="color" onchange="setStrokeStyle()" />
+                    <input class="color-pick" type="color" id="color" name="colorBorderTxt" form="frmRegister"
+                        value="#000000" id="color" onchange="setStrokeStyle()" />
                 </div>
                 <div>
                     <button class="btn" onclick="onUploadImg()"><img src="img/facebook-logo.png"
                             class="btn-image"></button>
                     <button class="btn" onclick="onUploadImgL()"><img src="img/linkedin-logo.png"
                             class="btn-image"></button>
+                    <button class="btn" onclick="onSave()">Save</button>
                     <a href="#" class="btn" onclick="downloadImg(this)" download="my-img.jpg">Download jpeg</a>
                 </div>
             </section>
@@ -113,10 +114,12 @@
             <img src="img/Patrick star.jpeg" alt="meme" id="23" onClick="renderCanvasImg(this)" class="img hide">
         </div>
     </div>
-
-    <script src="js/main.js"></script>
-    <script src="js/memeservice.js"></script>
+    <script src="js/services/storage.service.js"></script>
     <script src="js/upload-from-local.js"></script>
+    <script src="js/memeservice.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/moving.js"></script>
+
     <script src="js/sharing-on-facebook.js"></script>
     <script src="js/sharing-on-linkedin.js"></script>
 </body>
