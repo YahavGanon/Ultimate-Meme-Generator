@@ -181,6 +181,10 @@ function onRightSide() {
     renderOnCanvas()
 }
 
+function onClearInput(){
+    clearInput()
+}
+
 function onSave() {
     gSavedMemes = baseImg
     saveToStorage(DB_IMG_STR, gSavedMemes)

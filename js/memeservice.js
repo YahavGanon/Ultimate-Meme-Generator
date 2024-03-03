@@ -43,6 +43,7 @@ function selectedMeme(id) {
 }
 
 function removeLine(idx) {
+    if (gMeme.lines.length === 1) return
     const lineIdx = gMeme.lines.findIndex((line) => line.id === idx)
     gMeme.lines.splice(lineIdx, 1)
     gMeme.selectedLineIdx = gMeme.lines.length - 1
@@ -75,8 +76,13 @@ function setFont(value) {
     selectedLine.size = currentFontSize + 'px' + ' ' + value.value
 }
 
-function getImages(){
+function getImages() {
     return gImgs
+}
+
+function clearInput() {
+    const elTextInput = document.querySelector('.meme-text-input')
+    elTextInput.value = ''
 }
 
 

@@ -26,6 +26,10 @@
     border-radius: 10px;
 }
 
+.img:hover {
+    cursor: pointer;
+}
+
 .search-input {
     font-family: var(--font);
     background-color: #ebeef3;
