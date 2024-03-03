@@ -43,8 +43,8 @@ function renderCanvasImg(img) {
     const myElement = document.getElementById('myElement')
     myElement.style.display = 'none'
 
-    // const keys = document.getElementById('keyswords')
-    // keys.style.display = 'none'
+    const keys = document.querySelector('.keywords')
+    keys.style.display = 'none'
 }
 
 function renderOnCanvas() {
