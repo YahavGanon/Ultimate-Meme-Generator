@@ -4,5 +4,8 @@
    
    /* size */
     --em-1: 1em;
+
+    /* font */
+    --font: cursive;
 }
 

@@ -38,13 +38,16 @@ img{
     border-radius: 5px;
     cursor: pointer;
 }
+
 button:hover{
     background-color: lightskyblue;
 }
+
 p span{
     color:blueviolet;
     font-size: 2em;
-} 
+}
+
 .special{
     font-size: 2em;
     color:rgb(128, 180, 225)

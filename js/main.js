@@ -8,11 +8,11 @@ const TOUCH_EVENTS = ['touchstart', 'touchmove', 'touchend']
 var gImgs = [
     { id: 1, url: 'img/1.jpg', keywords: ['funny', 'president', 'fat'] },
     { id: 2, url: 'img/2.jpg', keywords: ['animal', 'dogs', 'love'] },
-    { id: 3, url: 'img/3.jpg', keywords: ['child', 'dogs', 'love'] },
+    { id: 3, url: 'img/3.jpg', keywords: ['baby', 'dogs', 'love'] },
     { id: 4, url: 'img/4.jpg', keywords: ['cat', 'dogs', 'funny'] },
     { id: 5, url: 'img/5.jpg', keywords: ['child', 'sea', 'funny'] },
     { id: 6, url: 'img/6.jpg', keywords: ['person', 'smart', 'explain'] },
-    { id: 7, url: 'img/7.jpg', keywords: ['child', 'funny', 'eyes'] },
+    { id: 7, url: 'img/7.jpg', keywords: ['baby', 'funny', 'eyes'] },
     { id: 8, url: 'img/8.jpg', keywords: ['smart', 'person', 'eyes'] },
     { id: 9, url: 'img/9.jpg', keywords: ['child', 'person', 'smart'] },
     { id: 10, url: 'img/10.jpg', keywords: ['smart', 'person', 'president'] },
@@ -29,6 +29,9 @@ var gImgs = [
 function onInit() {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
+    renderGallery()
+    initKeys()
+    renderKeyWords()
     addListeners()
 }
 
@@ -39,59 +42,50 @@ function renderCanvasImg(img) {
 
     const myElement = document.getElementById('myElement')
     myElement.style.display = 'none'
+
+    // const keys = document.getElementById('keyswords')
+    // keys.style.display = 'none'
 }
 
-function renderOnCanvas(){
-        gCtx.drawImage(saveImg, 0, 0, gElCanvas.width, gElCanvas.height)
-        gMeme.lines.forEach(line => {
-            gCtx.lineWidth = 2
-            gCtx.strokeStyle = line.strokeColor
-            gCtx.fillStyle = line.color
-            gCtx.font = line.size
-            gCtx.textAlign = line.align
-            gCtx.textBaseline = 'middle'
-            gCtx.fillText(line.txt, line.x, line.y)
-            gCtx.strokeText(line.txt, line.x, line.y)
-            gElCanvas.addEventListener('click', function (event) {
-                handleClick(event, line.text, line.x, line.y, line.id);
-            })
+function renderOnCanvas() {
+    gCtx.drawImage(saveImg, 0, 0, gElCanvas.width, gElCanvas.height)
+    gMeme.lines.forEach(line => {
+        gCtx.lineWidth = 2
+        gCtx.strokeStyle = line.strokeColor
+        gCtx.fillStyle = line.color
+        gCtx.font = line.size
+        gCtx.textAlign = line.align
+        gCtx.textBaseline = 'middle'
+        gCtx.fillText(line.txt, line.x, line.y)
+        gCtx.strokeText(line.txt, line.x, line.y)
+        gElCanvas.addEventListener('click', function (event) {
+            handleClick(event, line.text, line.x, line.y, line.id);
         })
+    })
 }
 
 function onChangeLine(value) {
-    gMeme.selectedLineIdx = value + 1
-    if (gMeme.selectedLineIdx >= gMeme.lines.length){
-        gMeme.selectedLineIdx = 0
-    }
+    changeLine(value)
 }
 
 function onAddTxt(txt) {
-    const selectedLine = gMeme.lines[gMeme.selectedLineIdx]
-    selectedLine.txt = txt.value
-    gElCanvas.height = (saveImg.naturalHeight / saveImg.naturalWidth) * gElCanvas.width
+    addLine(txt)
     renderOnCanvas()
 }
 
 function onRemoveline(lineCut) {
     removeLine(lineCut)
     renderOnCanvas()
-    gMeme.selectedLineIdx = gMeme.lines.length - 1
 }
 
 function onFontSize(value) {
-    const selectedLine = gMeme.lines[gMeme.selectedLineIdx]
-    const currentFontSize = parseInt(selectedLine.size)
-    const newFontSize = currentFontSize + value
-    selectedLine.size = newFontSize + 'px' + ' ' + font
+    changeFontSize(value)
     renderOnCanvas()
 }
 
 function onSetFont(value) {
-    font = value.value
-    const selectedLine = gMeme.lines[gMeme.selectedLineIdx]
-    const currentFontSize = parseInt(selectedLine.size)
-    selectedLine.size = currentFontSize + 'px' + ' ' + value.value
-    renderOnCanvas()   
+    setFont(value)
+    renderOnCanvas()
 }
 
 function setFillColor() {
@@ -108,19 +102,25 @@ function setStrokeStyle() {
     renderOnCanvas()
 }
 
+//change to normal filter as we learned
 function onFilterByName() {
     const searchInput = document.querySelector('input[type="text"]').value.toLowerCase()
-    
+
     gImgs.forEach(img => {
         const elImg = document.getElementById(`${img.id}`)
         let shouldDisplay = false
 
         if (searchInput === "") {
-            shouldDisplay = true 
+            shouldDisplay = true
         } else {
             img.keywords.forEach(word => {
                 if (word.toLowerCase().includes(searchInput)) {
                     shouldDisplay = true
+                }
+                if (word.toLowerCase() === searchInput) {
+                    gKeys[searchInput]++
+                    renderKeyWords()
+                    saveKeys()
                 }
             });
         }
@@ -138,22 +138,22 @@ function downloadImg(elLink) {
     elLink.href = imgContent
 }
 
-function onToggleMenu(){
+function onToggleMenu() {
     document.body.classList.toggle('menu-open')
 }
 
- function onRandomize() {
+function onRandomize() {
     const elImg = document.getElementById(`${getRandomIntInclusive(1, 18)}`)
     renderCanvasImg(elImg)
- }
+}
 
- function onRandomize2(){
+function onRandomize2() {
     const elImg = document.getElementById(`${getRandomIntInclusive(19, 23)}`)
     saveImg = elImg
 
     gElCanvas.height = (elImg.naturalHeight / elImg.naturalWidth) * gElCanvas.width
     gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
-    drawText('',200,50 ,gMeme.lines.length)
+    drawText('', 200, 50, gMeme.lines.length)
     gMeme.selectedLineIdx = 0
 
     const elEditorSection = document.querySelector('.meme-editor-page')
@@ -161,43 +161,50 @@ function onToggleMenu(){
 
     const myElement = document.getElementById('myElement')
     myElement.style.display = 'none'
- }
+}
 
-function onLeftSide(){
+function onLeftSide() {
     const selectedLine = gMeme.lines[gMeme.selectedLineIdx]
     selectedLine.align = 'right'
     renderOnCanvas()
 }
 
-function onCenter(){
+function onCenter() {
     const selectedLine = gMeme.lines[gMeme.selectedLineIdx]
     selectedLine.align = 'center'
     renderOnCanvas()
 }
 
-function onRightSide(){
+function onRightSide() {
     const selectedLine = gMeme.lines[gMeme.selectedLineIdx]
     selectedLine.align = 'left'
     renderOnCanvas()
 }
 
-function onSave(){
+function onSave() {
     gSavedMemes = baseImg
     saveToStorage(DB_IMG_STR, gSavedMemes)
     saveToStorage('DB_meme', gMeme)
+    const elPopModal = document.querySelector('.adding-modal')
+        elPopModal.show()
+        setTimeout(() => {
+            elPopModal.close()
+        }, 2000)
 }
 
-function onSavedInit(){
+function onSavedInit() {
     let gImg = loadFromStorage(DB_IMG_STR)
     let meme = loadFromStorage('DB_meme')
     gMeme = meme
+
     if (typeof gImg === 'string' && gImg.startsWith('data:image/png;base64,')) {
         saveImg = new Image()
         saveImg.src = gImg
-        saveImg.onload = function() {
+        saveImg.onload = function () {
             gElCanvas.height = (saveImg.naturalHeight / saveImg.naturalWidth) * gElCanvas.width
             renderOnCanvas()
         }
+
     }
     const elEditorSection = document.querySelector('.meme-editor-page')
     elEditorSection.classList.remove("hide")

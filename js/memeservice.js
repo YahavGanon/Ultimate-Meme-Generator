@@ -45,13 +45,40 @@ function selectedMeme(id) {
 function removeLine(idx) {
     const lineIdx = gMeme.lines.findIndex((line) => line.id === idx)
     gMeme.lines.splice(lineIdx, 1)
+    gMeme.selectedLineIdx = gMeme.lines.length - 1
 }
 
-function getRandomIntInclusive(min, max) {
-    const minCeiled = Math.ceil(min);
-    const maxFloored = Math.floor(max);
-    return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled);
+function changeLine(value) {
+    gMeme.selectedLineIdx = value + 1
+    if (gMeme.selectedLineIdx >= gMeme.lines.length) {
+        gMeme.selectedLineIdx = 0
+    }
 }
+
+function addLine(txt) {
+    const selectedLine = gMeme.lines[gMeme.selectedLineIdx]
+    selectedLine.txt = txt.value
+    gElCanvas.height = (saveImg.naturalHeight / saveImg.naturalWidth) * gElCanvas.width
+}
+
+function changeFontSize(value) {
+    const selectedLine = gMeme.lines[gMeme.selectedLineIdx]
+    const currentFontSize = parseInt(selectedLine.size)
+    const newFontSize = currentFontSize + value
+    selectedLine.size = newFontSize + 'px' + ' ' + font
+}
+
+function setFont(value) {
+    font = value.value
+    const selectedLine = gMeme.lines[gMeme.selectedLineIdx]
+    const currentFontSize = parseInt(selectedLine.size)
+    selectedLine.size = currentFontSize + 'px' + ' ' + value.value
+}
+
+function getImages(){
+    return gImgs
+}
+
 
 
 

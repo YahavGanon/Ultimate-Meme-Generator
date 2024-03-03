@@ -7,6 +7,7 @@
 .main-gallery {
     display: flex;
     flex-direction: column;
+    width:60vw;
 }
 
 .mems {
@@ -18,4 +19,17 @@
     align-items: center;
     padding-inline: 50px;
     scrollbar-color: var(--mix-blue-green);
+    overflow: hidden;
+    margin-left: 5em; 
+}
+
+#keywords {
+    display: flex;
+    justify-content: space-around;
+    color: whitesmoke;
+    font-family: var(--font);
+    border-radius: 0.5rem;
+    background: var(--mix-blue-green);
+    width: 30em;
+    padding: 0.5em;
 }
