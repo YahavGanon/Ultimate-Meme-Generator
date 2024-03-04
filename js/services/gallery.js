@@ -37,7 +37,7 @@ function renderKeyWords() {
 
 function renderGallery() {
     // this function brings from the service an array of the images
-    const images = getImages()
+    const images = getImgs()
     // if there is a filter option, we will filter the array here,,
     // image = images.filter(i=>i.tags.includes(filterbY))
     const elImgs = document.querySelector('.mems')

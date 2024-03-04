@@ -63,6 +63,9 @@ function renderOnCanvas() {
         })
     })
 }
+function getImgs() {
+    return gImgs
+}
 
 function onChangeLine(value) {
     changeLine(value)

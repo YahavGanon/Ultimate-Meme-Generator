@@ -76,9 +76,6 @@ function setFont(value) {
     selectedLine.size = currentFontSize + 'px' + ' ' + value.value
 }
 
-function getImages() {
-    return gImgs
-}
 
 function clearInput() {
     const elTextInput = document.querySelector('.meme-text-input')
